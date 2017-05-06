@@ -5,8 +5,8 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour {
 	int t=0;
 	int direction=1;
-	public int turn=500;
-	public float speed=2;
+	public int turn=100;
+	public float speed=0.1f;
 	// Use this for initialization
 	void Start () {
 		
