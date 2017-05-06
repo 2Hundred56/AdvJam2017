@@ -58,15 +58,15 @@ public class Platformer : MonoBehaviour {
 		}
 		if (isTouchingGround || !isTouchingSide) {
 			if (Input.GetKey(KeyCode.D)) {
-				rb.velocity = new Vector2 (4 * flip, rb.velocity.y);
+				rb.velocity = new Vector2 (0, rb.velocity.y) + (Vector2) transform.right*4;
 			}
 			if (Input.GetKey(KeyCode.A)) {
-				rb.velocity = new Vector2 (-4 * flip, rb.velocity.y);
+				rb.velocity = new Vector2 (0, rb.velocity.y) - (Vector2) transform.right*4;
 			}
 		}
 		if (isTouchingGround) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
-				rb.AddForce (new Vector2 (0, jumpForce*100));
+				rb.AddForce ((Vector2) transform.up*jumpForce*100);
 			}
 		}
 
