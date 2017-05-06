@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platformer : MonoBehaviour {
-	bool touching = false;
-	Vector3 grav = new Vector3(0, -.30625f, 0);
+public class Spin : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,10 +11,6 @@ public class Platformer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		transform.rotation *= Quaternion.Euler (new Vector3 (0, 0, 1));
 	}
-	void onCollisionEnter2D (Collider2D coll) {
-		print ("We hit something");
-	}
-		
 }
