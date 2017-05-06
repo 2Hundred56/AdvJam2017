@@ -14,7 +14,8 @@ public class Mirror : MonoBehaviour {
 	void Update () {
 		t += 1;
 	}
-	void onTriggerEnter2D(Collider collider) {
+	void onTriggerEnter2D(Collider2D collider) {
+		print ("Yeah!");
 		if (t > recharge) {
 			t = 0;
 			Physics.gravity *= -1;
