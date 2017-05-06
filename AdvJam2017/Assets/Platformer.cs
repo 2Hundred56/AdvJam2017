@@ -16,6 +16,7 @@ public class Platformer : MonoBehaviour {
 	public bool isTouchingSide = false;
 	public bool isTouchingGround = false;
 	GameObject floor = null;
+	public int jumpForce = 5;
 	Vector3 positionRelative;
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
@@ -65,7 +66,7 @@ public class Platformer : MonoBehaviour {
 		}
 		if (isTouchingGround) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
-				rb.AddForce (new Vector2 (0, 200));
+				rb.AddForce (new Vector2 (0, jumpForce*100));
 			}
 		}
 
