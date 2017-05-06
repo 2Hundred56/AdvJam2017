@@ -77,14 +77,18 @@ public class Platformer : MonoBehaviour {
 		
 	}
 	void OnTriggerEnter2D (Collider2D col) {
-		isTouchingGround = true;
-		floor = col.gameObject;
-		transform.SetParent (floor.transform);
+		if (col.gameObject.tag == "platform") {
+			isTouchingGround = true;
+			floor = col.gameObject;
+			transform.SetParent (floor.transform);
+		}
 	}
 	void OnTriggerExit2D (Collider2D col) {
-		isTouchingGround = false;
-		floor = null;
-		transform.SetParent (null);
+		if (col.gameObject.tag == "platform") {
+			isTouchingGround = false;
+			floor = null;
+			transform.SetParent (null);
+		}
 	}
 
 		
