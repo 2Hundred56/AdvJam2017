@@ -12,6 +12,9 @@ public class Platformer : MonoBehaviour {
 	Quaternion upsideDown = Quaternion.Euler(new Vector3(0,0,180f));
 	Quaternion rightSideUp = Quaternion.identity;
 	float t;
+	int flip = 1;
+	public bool isTouchingSide = false;
+	public bool isTouchingGround = false;
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 	}
@@ -20,20 +23,20 @@ public class Platformer : MonoBehaviour {
 	void Update () {
 		if (transform.position.y<0) {
 			rb.gravityScale = -1;
+			flip = -1;
 			if (!isRotating && (hasRotated == 1 || hasRotated == 2)) {
 				isRotating = true;
 				rotLast = transform.rotation;
 				rotTarget = upsideDown;
-				print ("flop");
 			}
 
 		} else {
 			rb.gravityScale = 1;
+			flip = 1;
 			if (!isRotating && (hasRotated == 0 || hasRotated == 3)) {
 				isRotating = true;
 				rotLast = transform.rotation;
 				rotTarget = rightSideUp;
-				print ("flop");
 			}
 		}
 		if (isRotating) {
@@ -50,9 +53,29 @@ public class Platformer : MonoBehaviour {
 				t = 0;
 			}
 		}
+		if (isTouchingGround || !isTouchingSide) {
+			if (Input.GetKey(KeyCode.D)) {
+				rb.velocity = new Vector2 (4 * flip, rb.velocity.y);
+			}
+			if (Input.GetKey(KeyCode.A)) {
+				rb.velocity = new Vector2 (-4 * flip, rb.velocity.y);
+			}
+		}
+		if (isTouchingGround) {
+			if (Input.GetKeyDown(KeyCode.Space)) {
+				rb.AddForce (new Vector2 (0, 200));
+			}
+		}
+
 	}
 	void OnCollisionEnter2D (Collision2D col) {
 		
+	}
+	void OnTriggerEnter2D (Collider2D col) {
+		isTouchingGround = true;
+	}
+	void OnTriggerExit2D (Collider2D col) {
+		isTouchingGround = false;
 	}
 		
 }

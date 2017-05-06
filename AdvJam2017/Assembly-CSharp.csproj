@@ -49,6 +49,7 @@
      <Compile Include="Assets\Mirror.cs" />
      <Compile Include="Assets\MovingPlatform.cs" />
      <Compile Include="Assets\Platformer.cs" />
+     <Compile Include="Assets\SideTrigger.cs" />
      <Compile Include="Assets\Spin.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
