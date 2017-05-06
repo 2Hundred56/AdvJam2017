@@ -15,6 +15,8 @@ public class Platformer : MonoBehaviour {
 	int flip = 1;
 	public bool isTouchingSide = false;
 	public bool isTouchingGround = false;
+	GameObject floor = null;
+	Vector3 positionRelative;
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 	}
@@ -67,15 +69,21 @@ public class Platformer : MonoBehaviour {
 			}
 		}
 
+
+
 	}
 	void OnCollisionEnter2D (Collision2D col) {
 		
 	}
 	void OnTriggerEnter2D (Collider2D col) {
 		isTouchingGround = true;
+		floor = col.gameObject;
+		transform.SetParent (floor.transform);
 	}
 	void OnTriggerExit2D (Collider2D col) {
 		isTouchingGround = false;
+		floor = null;
+		transform.SetParent (null);
 	}
 		
 }
