@@ -1,11 +1,11 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{83BF1E78-3265-3971-A3E6-A62AA51D53D3}") = "AdvJam2017", "Assembly-CSharp-firstpass.csproj", "{A48D6048-CDA8-5750-EBAD-37217AA29A83}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvJam2017", "Assembly-CSharp-firstpass.csproj", "{A48D6048-CDA8-5750-EBAD-37217AA29A83}"
 EndProject
-Project("{83BF1E78-3265-3971-A3E6-A62AA51D53D3}") = "AdvJam2017", "Assembly-CSharp.csproj", "{8A32105E-A2F8-0A91-65D2-0385FC13E415}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvJam2017", "Assembly-CSharp.csproj", "{8A32105E-A2F8-0A91-65D2-0385FC13E415}"
 EndProject
-Project("{83BF1E78-3265-3971-A3E6-A62AA51D53D3}") = "AdvJam2017", "Assembly-CSharp-Editor.csproj", "{5824469E-D8CC-9B43-10B9-8E9C7F76E107}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvJam2017", "Assembly-CSharp-Editor.csproj", "{5824469E-D8CC-9B43-10B9-8E9C7F76E107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
