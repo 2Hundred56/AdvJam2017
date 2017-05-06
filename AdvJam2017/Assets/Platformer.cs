@@ -85,5 +85,6 @@ public class Platformer : MonoBehaviour {
 		floor = null;
 		transform.SetParent (null);
 	}
+
 		
 }
