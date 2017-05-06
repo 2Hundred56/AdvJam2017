@@ -5,49 +5,49 @@ using UnityEngine;
 public class Platformer : MonoBehaviour {	
 	// Use this for initialization
 	Rigidbody2D rb;
-	float rotAngle = 0.0f;
-	int rotMode = 0;
+	bool isRotating = false;
+	int hasRotated = 0; // 0 for no (top) 1 for yes (top) 2 for no (bottom) 3 for yes (bottom)
+	Quaternion rotLast;
+	Quaternion rotTarget;
+	Quaternion upsideDown = Quaternion.Euler(new Vector3(0,0,180f));
+	Quaternion rightSideUp = Quaternion.identity;
+	float t;
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/* Rot modes:
-		 * -2 - Above y=0 rotating
-		 * -1 - Below y=0 static
-		 * 0  - Above y=0 static
-		 * 1  - Below y=0 rotating
-		 * 
-		*/
 		if (transform.position.y<0) {
 			rb.gravityScale = -1;
-			if (rotMode == 0) {
-				rotMode = 1;
-			}
-			if (rotMode == 1) {
-				float rotAmount = 360 * Time.deltaTime;
-				transform.Rotate (new Vector3 (0, 0, rotAmount));
-				rotAngle += rotAmount;
-				if (rotAngle >= 180) {
-					rotMode = -1;
-					rotAngle = 0;
-				}
+			if (!isRotating && (hasRotated == 1 || hasRotated == 2)) {
+				isRotating = true;
+				rotLast = transform.rotation;
+				rotTarget = upsideDown;
+				print ("flop");
 			}
 
 		} else {
 			rb.gravityScale = 1;
-			if (rotMode == -1) {
-				rotMode = -2;
+			if (!isRotating && (hasRotated == 0 || hasRotated == 3)) {
+				isRotating = true;
+				rotLast = transform.rotation;
+				rotTarget = rightSideUp;
+				print ("flop");
 			}
-			if (rotMode == -2) {
-				float rotAmount = 360 * Time.deltaTime;
-				transform.Rotate (new Vector3 (0, 0, rotAmount));
-				rotAngle += rotAmount;
-				if (rotAngle >= 180) {
-					rotMode = 0;
-					rotAngle = 0;
+		}
+		if (isRotating) {
+			transform.rotation = Quaternion.Lerp (rotLast, rotTarget,t);
+			t += 3 * Time.deltaTime;
+			if (t>=1) {
+				transform.rotation = Quaternion.Slerp (rotLast, rotTarget,1);
+				isRotating = false;
+				if (transform.position.y < 0) {
+					hasRotated = 3;
+				} else {
+					hasRotated = 1;
 				}
+				t = 0;
 			}
 		}
 	}
