@@ -14,7 +14,7 @@ public class MovingPlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position += new Vector3 (speed * direction*Time.deltaTime, 0);
+		GetComponent<Rigidbody2D>().MovePosition(transform.position+new Vector3 (speed * direction*Time.deltaTime, 0));
 		t += 1;
 		if (t >= turn) {
 			t -= turn;
@@ -22,4 +22,5 @@ public class MovingPlatform : MonoBehaviour {
 		}
 
 	}
+
 }
